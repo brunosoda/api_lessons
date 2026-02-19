@@ -2,8 +2,6 @@ import base64
 import requests
 from pprint import pprint
 
-from urllib3 import request
-
 usuario = "meu-usuario"
 senha = "senha-errada"
 
