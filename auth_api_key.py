@@ -1,31 +1,34 @@
-import base64
+import os
 import requests
 from pprint import pprint
+import dotenv
 
-token = "a29a19b5d3c4e0e5c76629a74104581c"
+dotenv.load_dotenv()
+
+token = os.environ['CHAVE_API_OPENWEATHER']
 
 
 url_2 = "http://api.openweathermap.org/geo/1.0/direct"
 params_2 = {
-    'q': 'Porto Alegre',
+    'q': 'Yerevan',
     'appid': token,
     'limit': 1,
 }
-resposta_1 = requests.get(url=url_2, params=params_2)
+resposta_2 = requests.get(url=url_2, params=params_2)
 
 
 try:
-    resposta_1.raise_for_status()
+    resposta_2.raise_for_status()
 except requests.HTTPError as e:
     print(f'Erro no request {e}')
-    resultado_1 = None
+    resultado_2 = None
 else:
-    resultado_1 = resposta_1.json()
+    resultado_2 = resposta_2.json()
 
 
-if resultado_1:
-    lat = resultado_1[0]['lat']
-    lon = resultado_1[0]['lon']
+if resultado_2:
+    lat = resultado_2[0]['lat']
+    lon = resultado_2[0]['lon']
 else:
     raise ValueError("Cidade não encontrada")
 

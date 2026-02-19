@@ -7,9 +7,9 @@ This repository contains beginner-friendly scripts that show how to:
 - make HTTP requests with `requests`
 - send query params and JSON payloads
 - handle HTTP errors
-- work with authentication (Basic Auth and API Key)
+- work with authentication (Basic Auth, API Key, and Access Token)
 - consume real public APIs (IBGE and OpenWeather)
-- build a simple Streamlit web app using API data
+- build simple Streamlit web apps using API data
 
 ## Requirements
 - Python 3.10+
@@ -17,7 +17,16 @@ This repository contains beginner-friendly scripts that show how to:
 
 ## Install dependencies
 ```bash
-pip install requests pandas streamlit
+pip install requests pandas streamlit python-dotenv
+```
+
+## Environment variables (`.env`)
+Some scripts use secrets from environment variables. Create a `.env` file in the project root:
+
+```env
+CHAVE_API_OPENWEATHER=your_openweather_api_key
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
 ```
 
 ## Files and what each one does
@@ -26,10 +35,12 @@ pip install requests pandas streamlit
 - `gerando_requests.py`: example of POST request with JSON body and query parameters.
 - `codigos_erro.py`: demonstrates `raise_for_status()` and basic HTTP error handling.
 - `auth_basic.py`: Basic Authentication example using Base64 credentials and `httpbin`.
-- `auth_api_key.py`: API Key authentication example with OpenWeather (geocoding + weather endpoint).
+- `auth_api_key.py`: API Key authentication example with OpenWeather (geocoding + weather endpoint), loading the key from `.env`.
+- `auth_access_token.py`: Access Token (OAuth Client Credentials) flow with Spotify API and Bearer token usage.
 - `primeira_api.py`: first IBGE API example, including query params and status handling.
 - `combinando_requests.py`: combines multiple IBGE API calls to map name frequency by Brazilian state.
 - `miniprojeto_webapp_ibge.py`: Streamlit mini app showing name frequency by decade from IBGE API.
+- `miniprojeto_webapp_openweather.py`: Streamlit mini app that searches weather by city using OpenWeather.
 
 ## Run examples
 From the project root:
@@ -40,24 +51,27 @@ python gerando_requests.py
 python codigos_erro.py
 python auth_basic.py
 python auth_api_key.py
+python auth_access_token.py
 python primeira_api.py
 python combinando_requests.py
 ```
 
-Run the web app:
+Run the web apps:
 
 ```bash
 streamlit run miniprojeto_webapp_ibge.py
+streamlit run miniprojeto_webapp_openweather.py
 ```
 
 ## Notes
 - `auth_basic.py` intentionally uses wrong credentials in the current script (`senha-errada`) to demonstrate auth failure behavior.
-- `auth_api_key.py` requires a valid OpenWeather API key; replace the token value in the script with your own key.
+- `auth_api_key.py` and `miniprojeto_webapp_openweather.py` require `CHAVE_API_OPENWEATHER` in `.env`.
+- `auth_access_token.py` requires Spotify credentials in `.env` (`SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET`).
 - The IBGE API endpoints used in this project are public and do not require authentication.
 
 ## Learning Path Suggestion
 1. Start with `primeiro_request.py`
 2. Move to `gerando_requests.py` and `codigos_erro.py`
-3. Try auth examples: `auth_basic.py` and `auth_api_key.py`
+3. Try auth examples: `auth_basic.py`, `auth_api_key.py`, and `auth_access_token.py`
 4. Explore data APIs: `primeira_api.py` and `combinando_requests.py`
-5. Finish with the Streamlit app: `miniprojeto_webapp_ibge.py`
+5. Finish with the Streamlit apps: `miniprojeto_webapp_ibge.py` and `miniprojeto_webapp_openweather.py`
