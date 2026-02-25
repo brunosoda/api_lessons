@@ -40,7 +40,7 @@ SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
 - `primeira_api.py`: first IBGE API example, including query params and status handling.
 - `combinando_requests.py`: combines multiple IBGE API calls to map name frequency by Brazilian state.
 - `miniprojeto_webapp_spotify.py`: Spotify mini project script with reusable functions to authenticate, search for an artist, and fetch top tracks.
-- `miniprojeto_webapp_spotify_chatgpt.py`: alternate Spotify mini project script with explicit auth/error handling and top-track retrieval.
+- `miniprojeto_webapp_spotify_chatgpt.py`: Streamlit Spotify mini app with auth handling, artist lookup, and track search-based ranking.
 - `miniprojeto_webapp_ibge.py`: Streamlit mini app showing name frequency by decade from IBGE API.
 - `miniprojeto_webapp_openweather.py`: Streamlit mini app that searches weather by city using OpenWeather.
 
@@ -65,12 +65,14 @@ Run the web apps:
 ```bash
 streamlit run miniprojeto_webapp_ibge.py
 streamlit run miniprojeto_webapp_openweather.py
+streamlit run miniprojeto_webapp_spotify_chatgpt.py
 ```
 
 ## Notes
 - `auth_basic.py` intentionally uses wrong credentials in the current script (`senha-errada`) to demonstrate auth failure behavior.
 - `auth_api_key.py` and `miniprojeto_webapp_openweather.py` require `CHAVE_API_OPENWEATHER` in `.env`.
 - `auth_access_token.py`, `miniprojeto_webapp_spotify.py`, and `miniprojeto_webapp_spotify_chatgpt.py` require Spotify credentials in `.env` (`SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET`).
+- `miniprojeto_webapp_spotify_chatgpt.py` uses Spotify Search for tracks (compatible with current Spotify API behavior).
 - The IBGE API endpoints used in this project are public and do not require authentication.
 
 ## Learning Path Suggestion
@@ -79,3 +81,4 @@ streamlit run miniprojeto_webapp_openweather.py
 3. Try auth examples: `auth_basic.py`, `auth_api_key.py`, and `auth_access_token.py`
 4. Explore data APIs: `primeira_api.py` and `combinando_requests.py`
 5. Finish with the mini projects and Streamlit apps: `miniprojeto_webapp_spotify.py`, `miniprojeto_webapp_spotify_chatgpt.py`, `miniprojeto_webapp_ibge.py`, and `miniprojeto_webapp_openweather.py`
+
